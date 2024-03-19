@@ -76,8 +76,6 @@ def test_1():
     place = "lohja"
     place = "kumpula"
     
-    lat,lon = 60.24446,24.04951
-    
     url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::hourly::simple&place={place}&starttime={starttime}"
     url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::hourly::simple&place={place}&starttime={starttime}&stoptime={stoptime}"
     
