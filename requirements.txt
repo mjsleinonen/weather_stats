@@ -1,0 +1,11 @@
+numpy
+webbrowser
+dash
+plotly
+pandas
+datetime
+flask
+xmltodict
+contextlib
+requests
+xml
