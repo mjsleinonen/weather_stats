@@ -23,7 +23,7 @@ from datetime import timedelta
 
 from weather_data import get_weather_data, get_weather_data_list, datetime_to_string
 
-def days_ago(ago=1, para="temperature1havg"):
+def days_ago(ago=1, para="temperature1havg", stations=["kumpula","lohja", "espoo", "vantaa"]):
     print(ago)
     
     endtime = dt.now()
@@ -31,7 +31,7 @@ def days_ago(ago=1, para="temperature1havg"):
     startime = dt.now()-timedelta(days=max(1,ago))
     start = datetime_to_string(startime)
     
-    df = get_weather_data_list(start, end, ["kumpula","lohja", "espoo", "vantaa"], parame=para) 
+    df = get_weather_data_list(start, end, stations, parame=para) 
     return df
 
 def row(a, b):
