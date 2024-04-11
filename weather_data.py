@@ -76,8 +76,8 @@ def test_1():
     place = "lohja"
     place = "kumpula"
     
-    url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::hourly::simple&place={place}&starttime={starttime}"
-    url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::hourly::simple&place={place}&starttime={starttime}&stoptime={stoptime}"
+    #url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::hourly::simple&place={place}&starttime={starttime}"
+    #url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::hourly::simple&place={place}&starttime={starttime}&stoptime={stoptime}"
     
     url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id={query}&place={place}&starttime={starttime}&endtime={endtime}"
     #url = f"https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id={query}&lon={lon}&lat={lat}&starttime={starttime}&endtime={endtime}"
@@ -204,6 +204,7 @@ def get_weather_data(starttime, endtime, station, parametre="sade1hacc"):
         if paraname == para:
             yield time, paraname, value, station
     
+    
 def get_weather_data_list(starttime, endtime, stations, parame="sade1hacc"):
     
     ll = []
@@ -214,8 +215,9 @@ def get_weather_data_list(starttime, endtime, stations, parame="sade1hacc"):
     data = pd.DataFrame(ll)
     
     data.columns = ["time","parametre","value","station"]
+
+    data.value = pd.to_numeric(data.value, downcast='float', errors="coerce")
     
-    data.value = pd.to_numeric(data.value, downcast='float')
     return data
 
     

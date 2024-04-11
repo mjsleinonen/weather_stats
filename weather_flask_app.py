@@ -23,7 +23,7 @@ from datetime import timedelta
 
 from weather_data import get_weather_data, get_weather_data_list, datetime_to_string
 
-def days_ago(ago=1, para="temperature1havg", stations=["kumpula","lohja", "espoo", "vantaa"]):
+def days_ago(ago=1, para="temperature1havg", stations=["kumpula", "lohja", "espoo", "vantaa"]):
     print(ago)
     
     endtime = dt.now()
@@ -39,7 +39,7 @@ def row(a, b):
 
 def get_fig_5(days=2, station_name="kumpula"):
     global df
-    df = days_ago(days)
+    df = days_ago(days, para="sade1hacc")
     fig = px.line(df[df.station==station_name], x="time", y="value", title='Temperature')
     
     return fig
