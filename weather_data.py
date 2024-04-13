@@ -165,7 +165,7 @@ def get_weather_data(starttime, endtime, station, parametre="sade1hacc"):
     r = get_request(url).text
     p = parseString(r)
     
-    paras = {
+    _paras = {
         'temperature1havg':'TA_PT1H_AVG',
         'temperature1hmax':'TA_PT1H_MAX',
         'temperature1hmin':'TA_PT1H_MIN',
@@ -178,6 +178,21 @@ def get_weather_data(starttime, endtime, station, parametre="sade1hacc"):
         'sade1hmax':'PRI_PT1H_MAX',
         'paine1havg':'PA_PT1H_AVG',
         'ww1hmin':'WAWA_PT1H_RANK' 
+    }
+    
+    paras = {
+        'TEMPERATURE_1H_AVG':'TA_PT1H_AVG',
+        'TEMPERATURE_1H_MAX':'TA_PT1H_MAX',
+        'TEMPERATURE_1H_MIN':'TA_PT1H_MIN',
+        'HUMIDITY_1H_AVG':'RH_PT1H_AVG',
+        'SNOW_1H_AVG':'WS_PT1H_AVG',
+        'SNOW_1H_MAX':'WS_PT1H_MAX',
+        'SNOW_1H_MIN':'WS_PT1H_MIN',
+        'WIND_1H_AVG' :'WD_PT1H_AVG',
+        'RAIN_1H_ACC':'PRA_PT1H_ACC',
+        'RAIN_1H_MAX':'PRI_PT1H_MAX',
+        'ATMOPRESSURE_1H_AVG':'PA_PT1H_AVG',
+        'WIND_1H':'WAWA_PT1H_RANK' 
     }
     
     #parserointi, parsee

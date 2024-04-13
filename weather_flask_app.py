@@ -37,10 +37,10 @@ def days_ago(ago=1, para="temperature1havg", stations=["kumpula", "lohja", "espo
 def row(a, b):
     return "{} : {}".format(a, b)
 
-def get_fig_5(days=2, station_name="kumpula"):
+def get_fig_5(days=1, station_name="kumpula", parametre="TEMPERATURE_1H_AVG"):
     global df
-    df = days_ago(days, para="sade1hacc")
-    fig = px.line(df[df.station==station_name], x="time", y="value", title='Temperature')
+    df = days_ago(days, para=parametre)
+    fig = px.line(df[df.station==station_name], x="time", y="value", title=parametre)
     
     return fig
      
@@ -63,7 +63,8 @@ def weather():
    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
    #return render_template('index.html')
    return render_template('plotti4.html', graphJSON=graphJSON)
-   
+
+'local host...'   
 url = "http://127.0.0.1:5000/weather"
 
 wb.open(url)
