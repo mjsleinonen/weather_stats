@@ -34,6 +34,15 @@ class Fish:
     def __init__(self, data):
         self.data=data
         
+request_cache = {}
+def get_request(url):
+    if url in request_cache.data:
+        return request_cache[url]
+    else:    
+        r = requests.get(url)
+        request_cache[url] = r
+    return r
+        
 def get_request(url):
     r = requests.get(url)
     return r
@@ -147,9 +156,9 @@ def test_2():
     startime = dt.now()-timedelta(days=1)
     start = datetime_to_string(startime)
     
-    l = get_weather_data_list(start, end, ["kumpula","lohja"], parametre="sade1hacc") 
+    l = get_weather_data_list(start, end, ["kumpula","lohja"], parametre="RAIN_1H_ACC") 
     
-def get_weather_data(starttime, endtime, station, parametre="sade1hacc"):
+def get_weather_data(starttime, endtime, station, parametre="TEMPERATURE_1H_AVG"):
     
     global r
     global data_dict
@@ -220,7 +229,7 @@ def get_weather_data(starttime, endtime, station, parametre="sade1hacc"):
             yield time, paraname, value, station
     
     
-def get_weather_data_list(starttime, endtime, stations, parame="sade1hacc"):
+def get_weather_data_list(starttime, endtime, stations, parame="RAIN_1H_ACC"):
     
     ll = []
     for station in stations:
@@ -235,5 +244,20 @@ def get_weather_data_list(starttime, endtime, stations, parame="sade1hacc"):
     
     return data
 
+def days_ago(ago=1, para="TEMPERATURE_1H_AVG", stations=["kumpula", "lohja", "espoo", "vantaa", "turku"]):
+
+    endtime = dt.now()
+    end = datetime_to_string(endtime)
+    startime = dt.now()-timedelta(days=max(1,ago))
+    start = datetime_to_string(startime)
     
+    df = get_weather_data_list(start, end, stations, parame=para) 
+    
+    return df
+
+
+
+
+
+
     

@@ -37,7 +37,7 @@ def days_ago(ago=1, para="temperature1havg", stations=["kumpula", "lohja", "espo
 def row(a, b):
     return "{} : {}".format(a, b)
 
-def get_fig_5(days=1, station_name="kumpula", parametre="TEMPERATURE_1H_AVG"):
+def get_fig_5(days=1, station_name="kumpula", parametre="HUMIDITY_1H_AVG"):
     global df
     df = days_ago(days, para=parametre)
     fig = px.line(df[df.station==station_name], x="time", y="value", title=parametre)
